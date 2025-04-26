@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Document Summarizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Legal Document Summarizer</h1>
+
+        <form action="/summarize" method="POST" enctype="multipart/form-data">
+            <div class="input-type">
+                <label><input type="radio" name="input_type" value="text" checked> Text Input</label>
+                <label><input type="radio" name="input_type" value="file"> Upload File</label>
+            </div>
+
+            <div class="text-input" id="text-input">
+                <textarea name="text" placeholder="Paste your legal document text here..." rows="10"></textarea>
+            </div>
+
+            <div class="file-input" id="file-input" style="display: none;">
+                <input type="file" name="file">
+            </div>
+
+            <button type="submit">Summarize</button>
+        </form>
+    </div>
+
+    <script>
+        const textRadio = document.querySelector('input[value="text"]');
+        const fileRadio = document.querySelector('input[value="file"]');
+        const textInput = document.getElementById('text-input');
+        const fileInput = document.getElementById('file-input');
+
+        textRadio.addEventListener('change', function() {
+            if (this.checked) {
+                textInput.style.display = 'block';
+                fileInput.style.display = 'none';
+            }
+        });
+
+        fileRadio.addEventListener('change', function() {
+            if (this.checked) {
+                fileInput.style.display = 'block';
+                textInput.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
